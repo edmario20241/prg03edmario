@@ -15,8 +15,12 @@ public class Adivinha extends javax.swing.JFrame {
     /**
      * Creates new form Adivinha
      */
-    public Adivinha() {
+    public Adivinha() { //Construtor
         initComponents();
+        
+        //Cria a primeira frase do Genio
+        lblFrase.setText("<html>Vou pensar em um valor entre 1 e 5. Tente adivinhar</html>");
+
     }
 
     /**
@@ -32,7 +36,7 @@ public class Adivinha extends javax.swing.JFrame {
         lblBalao = new javax.swing.JLabel();
         lblGenio = new javax.swing.JLabel();
         lblValor = new javax.swing.JLabel();
-        spnNumero = new javax.swing.JSpinner();
+        spnValor = new javax.swing.JSpinner();
         btnPalpite = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -41,8 +45,9 @@ public class Adivinha extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        lblFrase.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         lblFrase.setForeground(new java.awt.Color(0, 0, 0));
-        lblFrase.setText("jLabel4");
+        lblFrase.setText("Frase");
         lblFrase.setToolTipText("");
         getContentPane().add(lblFrase, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, 270, 130));
 
@@ -56,15 +61,38 @@ public class Adivinha extends javax.swing.JFrame {
         lblValor.setText("Valor");
         getContentPane().add(lblValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, 50, 60));
 
-        spnNumero.setModel(new javax.swing.SpinnerNumberModel(1, 1, 5, 1));
-        getContentPane().add(spnNumero, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, 50, 40));
+        spnValor.setModel(new javax.swing.SpinnerNumberModel(1, 1, 5, 1));
+        getContentPane().add(spnValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, 50, 40));
 
         btnPalpite.setText("Palpite");
         btnPalpite.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPalpite.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPalpiteActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnPalpite, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 360, 90, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnPalpiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPalpiteActionPerformed
+        // TODO add your handling code here:
+        
+        //Gera o valor do Genio
+        double n = Math.random() * 5 + 1;
+        int valor = (int) n;
+        
+        int num = Integer.parseInt(spnValor.getValue().toString());
+        
+        //Gera as mensagens do Genio
+        String f1 = "<html>ACERTOU! Eu pensei no valor: " + valor + "</html>";
+        String f2 = "<html>ERROU! Eu pensei no valor: " + valor + "</html>";
+        
+        String res = (valor == num)?f1:f2;
+        
+        lblFrase.setText(res);
+    }//GEN-LAST:event_btnPalpiteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -97,6 +125,6 @@ public class Adivinha extends javax.swing.JFrame {
     private javax.swing.JLabel lblFrase;
     private javax.swing.JLabel lblGenio;
     private javax.swing.JLabel lblValor;
-    private javax.swing.JSpinner spnNumero;
+    private javax.swing.JSpinner spnValor;
     // End of variables declaration//GEN-END:variables
 }
