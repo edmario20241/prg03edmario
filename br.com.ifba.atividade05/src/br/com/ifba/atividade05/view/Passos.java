@@ -4,6 +4,8 @@
  */
 package br.com.ifba.atividade05.view;
 
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author user
@@ -93,11 +95,6 @@ public class Passos extends javax.swing.JFrame {
             }
         });
 
-        lstCont.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(lstCont);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -175,22 +172,40 @@ public class Passos extends javax.swing.JFrame {
 
     private void btnContActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContActionPerformed
         // TODO add your handling code here:
+            //Cria as variaveis int para inicializar o loop
+           int inicio = sldInicio.getValue();
+           int fim = sldFim.getValue();
+           int passo = sldPasso.getValue();
+           
+           //Cria a lista para imprimir os valores
+           DefaultListModel lista = new DefaultListModel();
+           
+           //Cria o looping para listar os valores
+           for (int contador = inicio; contador <= fim; contador += passo){
+               lista.addElement(contador);               
+           }
+           
+           //Imprime os valores na lista.
+           lstCont.setModel(lista);
     }//GEN-LAST:event_btnContActionPerformed
 
     private void sldInicioStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sldInicioStateChanged
         // TODO add your handling code here:
+        //Cria uma variavel int para receber um int e convertelo em String
         int inicio = sldInicio.getValue();
         lblInicio.setText(Integer.toString(inicio));
     }//GEN-LAST:event_sldInicioStateChanged
 
     private void sldFimStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sldFimStateChanged
         // TODO add your handling code here:
+        //Cria uma variavel int para receber um int e convertelo em String
         int fim = sldFim.getValue();
         lblFim.setText(Integer.toString(fim));
     }//GEN-LAST:event_sldFimStateChanged
 
     private void sldPassoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sldPassoStateChanged
         // TODO add your handling code here:
+        //Cria uma variavel int para receber um int e convertelo em String
         int passo = sldPasso.getValue();
         lblPasso.setText(Integer.toString(passo));
     }//GEN-LAST:event_sldPassoStateChanged
