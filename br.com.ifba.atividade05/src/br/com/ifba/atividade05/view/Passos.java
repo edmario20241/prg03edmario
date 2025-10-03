@@ -50,15 +50,43 @@ public class Passos extends javax.swing.JFrame {
 
         lblSemUsoPasso.setText("Passos");
 
+        sldInicio.setMaximum(5);
+        sldInicio.setToolTipText("");
+        sldInicio.setValue(0);
+        sldInicio.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                sldInicioStateChanged(evt);
+            }
+        });
+
+        sldFim.setMaximum(20);
+        sldFim.setMinimum(6);
+        sldFim.setValue(6);
+        sldFim.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                sldFimStateChanged(evt);
+            }
+        });
+
+        sldPasso.setMaximum(2);
+        sldPasso.setMinimum(1);
+        sldPasso.setValue(1);
+        sldPasso.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                sldPassoStateChanged(evt);
+            }
+        });
+
         lblInicio.setText("0");
 
-        lblFim.setText("10");
+        lblFim.setText("20");
 
         lblPasso.setText("1");
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ifba/atividade05/imagem/mission-accomplished-0a4d643c2c.jpg"))); // NOI18N
 
         btnCont.setText("Contar");
+        btnCont.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCont.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnContActionPerformed(evt);
@@ -85,29 +113,29 @@ public class Passos extends javax.swing.JFrame {
                         .addComponent(btnCont, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(33, 33, 33))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(45, Short.MAX_VALUE)
+                        .addContainerGap(38, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblSemUsoPasso)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
                                 .addComponent(sldPasso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                                 .addComponent(lblPasso)
-                                .addGap(30, 30, 30))
+                                .addGap(18, 18, 18))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblSemUsoFim)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(sldFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(18, 18, 18)
                                 .addComponent(lblFim)
-                                .addGap(24, 24, 24))
+                                .addGap(12, 12, 12))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblSemUsoInicio)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(sldInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(18, 18, 18)
                                 .addComponent(lblInicio)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                .addGap(18, 18, 18)))))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
@@ -148,6 +176,24 @@ public class Passos extends javax.swing.JFrame {
     private void btnContActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnContActionPerformed
+
+    private void sldInicioStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sldInicioStateChanged
+        // TODO add your handling code here:
+        int inicio = sldInicio.getValue();
+        lblInicio.setText(Integer.toString(inicio));
+    }//GEN-LAST:event_sldInicioStateChanged
+
+    private void sldFimStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sldFimStateChanged
+        // TODO add your handling code here:
+        int fim = sldFim.getValue();
+        lblFim.setText(Integer.toString(fim));
+    }//GEN-LAST:event_sldFimStateChanged
+
+    private void sldPassoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sldPassoStateChanged
+        // TODO add your handling code here:
+        int passo = sldPasso.getValue();
+        lblPasso.setText(Integer.toString(passo));
+    }//GEN-LAST:event_sldPassoStateChanged
 
     /**
      * @param args the command line arguments
