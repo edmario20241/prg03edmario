@@ -45,6 +45,7 @@ public class TelaVetor extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         lstVetor = new javax.swing.JList<>();
         lblImagem = new javax.swing.JLabel();
+        btnLimparTudo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -85,6 +86,13 @@ public class TelaVetor extends javax.swing.JFrame {
 
         lblImagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ifba/atividade03/imagem/mission-accomplished-0a4d643c2c.jpg"))); // NOI18N
 
+        btnLimparTudo.setText("Limpar Tudo");
+        btnLimparTudo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimparTudoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -92,18 +100,15 @@ public class TelaVetor extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblImagem)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(txtNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(btnOrdem)
-                                .addComponent(btnRemove))
-                            .addGap(4, 4, 4))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGap(18, 18, 18)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtNum, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnOrdem)
+                            .addComponent(btnRemove)
+                            .addComponent(btnLimparTudo)
                             .addComponent(btnAdd))))
-                .addGap(53, 53, 53)
+                .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblVetor)
@@ -129,12 +134,13 @@ public class TelaVetor extends javax.swing.JFrame {
                             .addComponent(btnRemove))
                         .addGap(18, 18, 18)
                         .addComponent(btnOrdem)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                        .addComponent(lblImagem)
-                        .addGap(21, 21, 21))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                        .addComponent(btnLimparTudo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblImagem))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap())))
         );
 
         pack();
@@ -178,6 +184,19 @@ public class TelaVetor extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnOrdemActionPerformed
 
+    private void btnLimparTudoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparTudoActionPerformed
+        //Limpa todos os valores adicionados a lista
+        Arrays.fill(vetor, 0);
+        lista.removeAllElements();
+        
+        for (int contador = 0; contador < vetor.length; contador++){
+            lista.addElement(vetor[contador]);           
+        }
+        //Volta ao inicio da lista
+        selecionado = 0;
+        lblSelecionado.setText("{" + selecionado + "}");
+    }//GEN-LAST:event_btnLimparTudoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -205,6 +224,7 @@ public class TelaVetor extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnLimparTudo;
     private javax.swing.JButton btnOrdem;
     private javax.swing.JButton btnRemove;
     private javax.swing.JScrollPane jScrollPane1;
