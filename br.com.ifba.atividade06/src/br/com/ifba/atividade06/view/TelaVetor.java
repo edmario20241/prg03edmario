@@ -4,6 +4,9 @@
  */
 package br.com.ifba.atividade06.view;
 
+import java.util.Arrays;
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author user
@@ -12,11 +15,16 @@ public class TelaVetor extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaVetor.class.getName());
 
-    /**
-     * Creates new form TelaVetor
-     */
+    int vetor[] = new int [5];
+    DefaultListModel lista = new DefaultListModel();
+    int selecionado = 0;
+    
     public TelaVetor() {
         initComponents();
+        
+        for (int contador = 0; contador < vetor.length; contador++){
+            lista.addElement(vetor[contador]);
+        }
     }
 
     /**
@@ -41,10 +49,25 @@ public class TelaVetor extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btnAdd.setText("Adicionar");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
 
         btnRemove.setText("Remover");
+        btnRemove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoveActionPerformed(evt);
+            }
+        });
 
         btnOrdem.setText("Ordenar");
+        btnOrdem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOrdemActionPerformed(evt);
+            }
+        });
 
         lblVetor.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblVetor.setText("vetor");
@@ -52,6 +75,12 @@ public class TelaVetor extends javax.swing.JFrame {
         lblSelecionado.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblSelecionado.setText("[0]");
 
+        lstVetor.setModel(lista);
+        lstVetor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lstVetorMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(lstVetor);
 
         lblImagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/ifba/atividade03/imagem/mission-accomplished-0a4d643c2c.jpg"))); // NOI18N
@@ -110,6 +139,44 @@ public class TelaVetor extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        //Adiciona valores a lista
+        vetor[selecionado] = Integer.parseInt(txtNum.getValue().toString());
+        lista.removeAllElements();
+        
+        for (int contador = 0; contador < vetor.length; contador++){
+            lista.addElement(vetor[contador]);
+        }
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void lstVetorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstVetorMouseClicked
+        //Adiciona lógica para selecionar determinado item da lista
+        selecionado = lstVetor.getSelectedIndex();
+        lblSelecionado.setText("{" + selecionado + "}");
+        
+    }//GEN-LAST:event_lstVetorMouseClicked
+
+    private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
+        //Limpa os valores listados
+        vetor[selecionado] = 0;
+        lista.removeAllElements();
+        
+        for (int contador = 0; contador < vetor.length; contador++){
+            lista.addElement(vetor[contador]);
+        }
+    }//GEN-LAST:event_btnRemoveActionPerformed
+
+    private void btnOrdemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdemActionPerformed
+        //Ordena em crescentemente os valores da lista
+        Arrays.sort(vetor);
+        lista.removeAllElements();
+        
+        for (int contador = 0; contador < vetor.length; contador++){
+            lista.addElement(vetor[contador]);
+        }
+        
+    }//GEN-LAST:event_btnOrdemActionPerformed
 
     /**
      * @param args the command line arguments
